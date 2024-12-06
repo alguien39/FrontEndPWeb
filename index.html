@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+
+    <title>ROTTEN Tec</title>
+    <link rel="stylesheet" href="./src/estilo.css">
+</head>
+<body>
+    <div id="loginModal" class="login-modal">
+        <div class="login-box">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Iniciar sesión</h2>
+            <form id="loginForm">
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Ingresar</button>
+            </form>
+        </div>
+    </div>
+    <header>
+        <div class="logo"><a href="./index.html">ROTTEN TEC</a></div>
+        <div class="navbar">
+            <a href="./src/Actores.html">Actores</a>
+            <a href="./src/Peliculas.html">Películas</a>
+            <a href="./src/Directores.html">Directores</a>
+            <a href="javascript:void(0)" id="loginLink">LOGIN/SIGNUP</a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar película..">
+            <button id="btnbuscar" onclick="search()">Buscar</button>
+        </div>
+
+        <!-- Contenedor del carrusel -->
+        <div class="carousel-container">
+            <h2>Crítica a las películas</h2>
+            
+            <!-- Carrusel de películas -->
+            <div class="carousel" id="carousel">
+            </div>
+
+        <!-- Flechas de navegación -->
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </main>
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 Rotten Tec</p>
+    </footer>
+    <script src="./src/UI.js"></script>
+</body>
+</html>

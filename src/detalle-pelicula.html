@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+
+    <title>Detalles de la Película</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="../index.html">ROTTEN TEC</a></div>
+        <div class="navbar">
+            <a href="./Actores.html">Actores</a>
+            <a href="./Peliculas.html">Películas</a>
+            <a href="./Directores.html">Directores</a>
+            <a href="javascript:void(0)" id="loginLink">LOGIN/SIGNUP</a>
+        </div>
+    </header>
+
+    <main>
+        <h2>Detalles de la Película</h2>
+        
+        <div id="movie-card">
+            <img id="movie-image" src="" alt="Imagen de la película" class="movie-image">
+            <div class="movie-info">
+                <h3 id="movie-title"></h3>
+                <p id="movie-description"></p> 
+                <p id="movie-genre">Genero:</p>
+                <p id="movie-duration">Duracion:</p>
+                <p id="movie-actor">Actores:</p>
+                <p id="movie-director">Director:</p>
+            
+            </div>
+
+            <button id="leaveReviewBtn">Dejar Crítica</button>
+        </div>
+    
+            <!-- Modal para dejar una crítica -->
+            <div id="reviewModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeModal">&times;</span>
+    
+                    <h3>Deja tu crítica</h3>
+                    <label for="movieRating">Calificación (1-5 estrellas):</label>
+                    <div class="star-rating">
+                        <input type="radio" id="5-stars" name="rating" value="5">
+                        <label for="5-stars" class="fa fa-star"></label>
+                        <input type="radio" id="4-stars" name="rating" value="4">
+                        <label for="4-stars" class="fa fa-star"></label>
+                        <input type="radio" id="3-stars" name="rating" value="3">
+                        <label for="3-stars" class="fa fa-star"></label>
+                        <input type="radio" id="2-stars" name="rating" value="2">
+                        <label for="2-stars" class="fa fa-star"></label>
+                        <input type="radio" id="1-star" name="rating" value="1">
+                        <label for="1-star" class="fa fa-star"></label>
+                    </div>
+                    <input type="text" id="userName" placeholder="Tu nombre" required>
+                    <textarea id="movieReview" placeholder="Escribe tu crítica aquí..." rows="4" required></textarea>
+                    <button id="submitReviewBtn">Enviar Crítica</button>
+                </div>
+            </div>
+    
+            <div id="reviews-section">
+                <h4>Críticas:</h4>
+                <div id="reviews-list">
+                    
+                    <!-- Aquí se irán agregando las críticas -->
+                </div>
+            </div>
+        </main>
+    
+        <footer>
+            <p>&copy; 2024 Rotten Tec</p>
+        </footer>
+    
+        <script src="PeliculasUI.js">
+            
+        </script>
+    </body>
+    </html>
+    
