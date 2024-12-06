@@ -351,6 +351,132 @@ document.getElementById("btnAgregarPelicula").addEventListener("click", async fu
     .catch(error => console.error('Error:', error));
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Manejar cambio en el select de Películas
+    document.getElementById("Peliculas").addEventListener("change", handleSelectPeliculaChange);
+
+    // Manejar el botón de Modificar
+    document.getElementById("btnModificar").addEventListener("click", handleModificarPelicula);
+});
+
+// Función para manejar el cambio en el select de Películas
+function handleSelectPeliculaChange(event) {
+    const peliculaIdSeleccionada = event.target.value;
+
+    if (peliculaIdSeleccionada) {
+        // Solicitar detalles de la película seleccionada
+        fetch(`https://backendpweb-production.up.railway.app/Peliculas/${peliculaIdSeleccionada}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error al obtener los detalles de la película');
+                }
+                return response.json();
+            })
+            .then(pelicula => {
+                // Llenar el formulario con los datos de la película
+                document.getElementById('titulo').value = pelicula.Titulo || '';
+                document.getElementById('fechaEstreno').value = pelicula.FechaEstreno || '';
+                document.getElementById('presupuesto').value = pelicula.Presupuesto || '';
+                document.getElementById('recaudacion').value = pelicula.Recaudacion || '';
+                document.getElementById('director').value = pelicula.DirectorID || '';
+                document.getElementById('categoria').value = pelicula.CategoriaID || '';
+                document.getElementById('duracion').value = pelicula.DuracionMinutos || '';
+                document.getElementById('sinopsis').value = pelicula.Sinopsis || '';
+                document.getElementById('poster').value = pelicula.PosterImg || '';
+            })
+            .catch(error => {
+                console.error('Error al cargar los detalles de la película:', error);
+                alert('Hubo un error al cargar los detalles de la película.');
+            });
+    } else {
+        // Limpiar el formulario si no se selecciona ninguna película
+        limpiarFormulario();
+    }
+}
+
+// Función para limpiar el formulario
+function limpiarFormulario() {
+    document.getElementById('titulo').value = '';
+    document.getElementById('fechaEstreno').value = '';
+    document.getElementById('presupuesto').value = '';
+    document.getElementById('recaudacion').value = '';
+    document.getElementById('director').value = '';
+    document.getElementById('categoria').value = '';
+    document.getElementById('duracion').value = '';
+    document.getElementById('sinopsis').value = '';
+    document.getElementById('poster').value = '';
+}
+
+// Función para manejar la modificación de una película
+function handleModificarPelicula(event) {
+    event.preventDefault(); // Evitar el comportamiento por defecto del botón
+
+    const peliculasSelect = document.getElementById('Peliculas');
+    const peliculaIdSeleccionada = peliculasSelect.value;
+
+    if (!peliculaIdSeleccionada) {
+        alert('Por favor, selecciona una película para modificar.');
+        return;
+    }
+
+    // Obtener los valores del formulario
+    const titulo = document.getElementById('titulo').value.trim();
+    const fechaEstreno = document.getElementById('fechaEstreno').value;
+    const presupuesto = parseFloat(document.getElementById('presupuesto').value);
+    const recaudacion = parseFloat(document.getElementById('recaudacion').value);
+    const directorID = parseInt(document.getElementById('director').value, 10);
+    const categoriaID = parseInt(document.getElementById('categoria').value, 10);
+    const duracionMinutos = parseInt(document.getElementById('duracion').value, 10);
+    const sinopsis = document.getElementById('sinopsis').value.trim();
+    const posterImg = document.getElementById('poster').value.trim();
+
+    // Validar los campos
+    if (!titulo || !fechaEstreno || isNaN(presupuesto) || isNaN(recaudacion) ||
+        isNaN(directorID) || isNaN(categoriaID) || isNaN(duracionMinutos) ||
+        !sinopsis || !posterImg) {
+        alert('Por favor, completa todos los campos correctamente.');
+        return;
+    }
+
+    // Crear el objeto con los datos actualizados
+    const datosActualizados = {
+        titulo: titulo,
+        fechaEstreno: fechaEstreno,
+        presupuesto: presupuesto,
+        recaudacion: recaudacion,
+        director: directorID,
+        categoria: categoriaID,
+        duracion: duracionMinutos,
+        sinopsis: sinopsis,
+        poster: posterImg
+    };
+
+    // Enviar la solicitud PUT al servidor
+    fetch(`https://backendpweb-production.up.railway.app/Peliculas/${peliculaIdSeleccionada}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datosActualizados)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al actualizar la película');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('Película actualizada exitosamente.');
+        console.log('Respuesta del servidor:', data);
+        // Opcional: Actualizar el select de Películas o recargar la página
+    })
+    .catch(error => {
+        console.error('Error al actualizar la película:', error);
+        alert('Hubo un error al actualizar la película.');
+    });
+}
+
 // Llamar la función para cargar los detalles de la película cuando la página se carga
 window.onload = function() {
     /*loadMovieDetails();*/

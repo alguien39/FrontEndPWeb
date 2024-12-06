@@ -32,43 +32,43 @@
             <form id="formAgregarPelicula" class="formulario">
                 <label for="titulo">Título de la Película</label>
                 <input type="text" id="titulo" name="titulo" required>
-
+            
                 <label for="fechaEstreno">Fecha de Estreno</label>
                 <input type="date" id="fechaEstreno" name="fechaEstreno" required>
-
+            
                 <label for="presupuesto">Presupuesto</label>
                 <input type="number" id="presupuesto" name="presupuesto" step="0.01" required>
-
+            
                 <label for="recaudacion">Recaudación</label>
                 <input type="number" id="recaudacion" name="recaudacion" step="0.01" required>
-
+            
                 <label for="director">Director</label>
                 <select id="director" name="director" required>
                     <!-- Opciones de directores se agregan dinámicamente -->
                 </select>
-
+            
                 <label for="categoria">Categoría</label>
                 <select id="categoria" name="categoria" required>
                     <!-- Opciones de categorías se agregan dinámicamente -->
                 </select>
-
+            
                 <label for="duracion">Duración (en minutos)</label>
                 <input type="number" id="duracion" name="duracion" required>
-
+            
                 <label for="sinopsis">Sinopsis</label>
                 <textarea id="sinopsis" name="sinopsis" rows="4" required></textarea>
-
+            
                 <label for="poster">URL del Poster</label>
-                <input id="poster" name="poster" required>
-
-                <button id="btnAgregarPelicula">Agregar Película</button>
-
-                <label for="Peliculas">Peliculas</label>
+                <input type="url" id="poster" name="poster" required>
+            
+                <button type="button" id="btnAgregarPelicula">Agregar Película</button>
+            
+                <label for="Peliculas">Películas</label>
                 <select id="Peliculas" name="Peliculas">
-                <!--Opciones de peliculas agregadas dinamicamente-->>     
+                    <!-- Opciones de películas agregadas dinámicamente -->
                 </select>
-                <button id="btnModificar">Modificar</button>
-            </form>
+                <button type="button" id="btnModificar">Modificar</button>
+            </form>            
         </div>
 
     </main>
