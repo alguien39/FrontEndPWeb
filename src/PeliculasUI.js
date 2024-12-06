@@ -376,14 +376,23 @@ function handleSelectPeliculaChange(event) {
             .then(pelicula => {
                 // Llenar el formulario con los datos de la película
                 document.getElementById('titulo').value = pelicula.Titulo || '';
+                document.getElementById('titulo').textContent = pelicula.Titulo;
                 document.getElementById('fechaEstreno').value = pelicula.FechaEstreno || '';
+                document.getElementById('fechaEstreno').textContent = pelicula.FechaEstreno;
                 document.getElementById('presupuesto').value = pelicula.Presupuesto || '';
+                document.getElementById('presupuesto').textContent = pelicula.Presupuesto;
                 document.getElementById('recaudacion').value = pelicula.Recaudacion || '';
+                document.getElementById('recaudacion').textContent = pelicula.Recaudacion;
                 document.getElementById('director').value = pelicula.DirectorID || '';
+                document.getElementById('director').textContent = pelicula.Director;
                 document.getElementById('categoria').value = pelicula.CategoriaID || '';
+                document.getElementById('categoria').textContent = pelicula.Categoria
                 document.getElementById('duracion').value = pelicula.DuracionMinutos || '';
+                document.getElementById('duracion').textContent = pelicula.DuracionMinutos;
                 document.getElementById('sinopsis').value = pelicula.Sinopsis || '';
+                document.getElementById('sinopsis').textContent = pelicula.Sinopsis;
                 document.getElementById('poster').value = pelicula.PosterImg || '';
+                document.getElementById('poster').textContent = pelicula.PosterImg;
             })
             .catch(error => {
                 console.error('Error al cargar los detalles de la película:', error);
