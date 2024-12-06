@@ -42,6 +42,8 @@ function cargarPeliculas() {
                 itemPelicula.appendChild(tituloPelicula);
 
                 ContenedorPeliculas.appendChild(itemPelicula);
+
+
             });
         })
         .catch(error => {
@@ -286,6 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Función para cargar los directores y categorías
     const director = document.getElementById('director');
     const categoria = document.getElementById('categoria');
+    const peliculas = document.getElementById('Peliculas');
     const cargarDatos = () => {
         fetch('https://backendpweb-production.up.railway.app/Peliculas')
             .then(response => response.json())
@@ -293,6 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Limpiar las opciones previas
                 director.innerHTML = '<option value="">Seleccione un director</option>';
                 categoria.innerHTML = '<option value="">Seleccione una categoría</option>';
+                peliculas.innerHTML = '<option value="">Seleccionar Pelicula A Editar</option>'
 
                 // Cargar los directores en el selector
                 data.forEach(pelicula => {
@@ -309,6 +313,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     option.textContent = pelicula.Categoria;
                     categoria.appendChild(option);
                 });
+
+                data.forEach(pelicula =>{
+                    const option = document.createElement("option");
+                    option.value = pelicula.PeliculaID;
+                    option.textContent = pelicula.Titulo;
+                    peliculas.appendChild(option);
+                })
             })
             .catch(error => {
                 console.error('Error al cargar los datos:', error);
